@@ -1,0 +1,23 @@
+'sigmoid': False, 
+'network': 
+    '_target_': 'DiNTS', 
+    'in_channels': 1, 
+    'out_channels': 3, 
+    'dints_space':
+        _target_: TopologyInstance
+        arch_code: [$torch.load($@bundle_root + '/scripts/arch_code.pth', map_location=torch.device('cuda'))[''code_a''], $torch.load($@bundle_root + '/scripts/arch_code.pth', map_location=torch.device('cuda'))[''code_c'']]
+        channel_mul: 1
+        device: $torch.device('cuda')
+        num_blocks: 12
+        num_depths: 4
+        use_downsample: true, 
+        'node_a': $torch.load($@bundle_root + '/scripts/arch_code.pth', map_location=torch.device('cuda'))[''code_a''], 
+        'num_classes': '@training#output_classes',
+        'use_downsample': true
+'orientation_ras': True,
+'crop_foreground': True,
+'resample_resolution': [1.0, 1.0, 1.0], 
+'normalize_mode': 'meanstd', 
+'intensity_bounds': None, 
+'roi_size': [96,96,32],
+'extra_modalities': {}
